@@ -16,13 +16,13 @@
             <a class="nav-item nav-link active" 
             href="{% url 'Login_app:index' %}">Home</a>
             <a class="nav-item nav-link" 
-            href="">Add</a>
+            href="{% url 'Login_app:register' %}">Register</a>
            
             
           </div>
         
       </nav>
-      <div class="container">
+      <div class="container" style="padding-top: 20px;">
         {% block body_block %}
         
         {% endblock body_block %}
