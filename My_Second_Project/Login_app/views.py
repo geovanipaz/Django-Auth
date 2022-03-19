@@ -14,6 +14,26 @@ def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        
+        if user:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect(reverse('Login_app:index'))
+                #return render(request, 'Login_app/index.html', context={})
+            else:
+                return HttpResponse('Account is not Active')
+        else:
+            HttpResponse('Login Detail are Wrong')
+    else:
+        #return render(request, 'Login_app/login.html', context={})
+        return HttpResponseRedirect(reverse('Login_app:login'))
+    
+@login_required               
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('Login_app:index'))
+
 
 def index(request):
     dict = {}
