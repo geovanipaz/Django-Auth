@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 {% extends "Login_app/base.html" %}
 
-
 {% block body_block %}
-  <h1>This is Index page</h1>
+  {% if user.is_authenticated %}
+    <p>hi {{user_basic_info.username}}</p>
+    <p>Your email {{user_basic_info.email}}</p>
+    <p><a href="{{ user_more_info.facebook_id }}">Facebook Page</a></p>
+    <img src="/media/{{user_more_info.profile_pic}}" alt="">
+  {% else %}
+  <div class="alert alert-primary">
+    You are not Logged in
+  </div>
+  {% endif %}  
 
 {% endblock %}
